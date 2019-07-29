@@ -5,10 +5,10 @@ Run Promises in a side process.
 There are some cases where you have a CPU-intensive operation and need to sideload it so the main thread won't get blocked. There are a few solutions based on Workers coming up, but they require Node.js v10.5+.
 
 ```javascript
-const SPromise = require('spromise'); // not published yet
+const SPromise = require('spromise'); // not published
 
 const operationResult = (baseNumber) => new SPromise((resolve, reject) => {
-  if (isNan(baseNumber)) return reject(new Error('The argument must be a number.'));
+  if (isNaN(baseNumber)) return reject(new Error('The argument must be a number.'));
 	let result = 0;
 	for (var i = Math.pow(baseNumber, 7); i >= 0; i--) {		
 		result += Math.atan(i) * Math.tan(i);
@@ -16,8 +16,8 @@ const operationResult = (baseNumber) => new SPromise((resolve, reject) => {
   resolve(result);
 }, { baseNumber });
 
-operation
-  .then(result => console.log('The result is:', result)
+operationResult(10)
+  .then(result => console.log('The result is:', result))
   .catch(console.error)
   .then(() => process.exit());
 ```
