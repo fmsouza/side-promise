@@ -1,6 +1,6 @@
-const SPromise = require('./index');
+const SidePromise = require('./index');
 
-const echoer = (name) => new SPromise((resolve, reject) => {
+const echoer = (name) => new SidePromise((resolve) => {
     resolve('Hello '+name);
 }, { name });
 
